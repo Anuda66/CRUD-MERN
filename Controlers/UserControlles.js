@@ -1,15 +1,15 @@
 const User = require("../Model/UseModel"); //Import model
-const { use } = require("../Route/UseRoute");
+//const { use } = require("../Route/UseRoute");
 
 // create function for display data-------------------------------------------
 const getAllUser = async(req, res, next) => {
-    let users; // Changed variable name to avoid conflict
+    let users; 
     
-    try {
+    try {  
         users = await User.find(); // Use the User model to find
         
         if (!users || users.length === 0) {
-            return res.status(404).json({ message: "No users found" });
+            return res.status(200).json({ message: "No users found" });
         }
         
         return res.status(200).json({ users });
@@ -41,12 +41,12 @@ const addUser = async(req, res, next) => {
     }
     catch(err) {
         console.log(err);
-        return res.status(500).json({ message: "Error adding user" });
+        return res.status(500).json({ message: "Error adding user"});
     }
 }
-// Get data from DI
+// Get data by DI
 const getById = async (req, res, next) => {
-    const id = req.params.id;  // Fixed typo in 'constid' to 'const id'
+    const id = req.params.id;  
     let user;
     
     try {
