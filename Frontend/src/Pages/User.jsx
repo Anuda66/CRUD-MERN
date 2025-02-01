@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import UsersData from '../Component/UsersData';
 
 const URL = 'http://Localhost:5000/users';
 
+//Get data using const fetchHandler 
 const fetchHandler = async()=>{
   return await axios.get(URL).then((res)=>res.data);
 }
@@ -10,6 +12,7 @@ const fetchHandler = async()=>{
 function User() {
 
   const[users, setUsers] = useState();
+  
   useEffect(()=>{
     fetchHandler().then((data)=>setUsers(data.users));
   })
@@ -20,7 +23,7 @@ function User() {
       <div>
         {users && users.map((user, i)=>(
           <div key={i}>
-            <User user={user}/>
+           <UsersData user={user}/> {/* Passing user prop correctly */}
           </div>
         ))}
       </div>
