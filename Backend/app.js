@@ -5,9 +5,11 @@ const mongoose = require("mongoose"); // setup mongoos to project
 const router = require("./Route/UseRoute"); // insert user rought
 
 const app = express();
+const cors = require('cors');
 
 //midle ware 
 app.use(express.json());
+app.use(cors());
 app.use("/users", router); // insert data create responsive to json
 
 //data base conncting
